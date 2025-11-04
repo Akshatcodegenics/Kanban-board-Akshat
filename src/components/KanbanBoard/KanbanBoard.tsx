@@ -3,6 +3,7 @@ import type { KanbanTask, KanbanBoardProps } from '@/types/kanban.types';
 import { KanbanColumn } from './KanbanColumn';
 import { TaskModal } from './TaskModal';
 import { useDragAndDrop } from '@/hooks/useDragAndDrop';
+import { Layers, Sparkles } from 'lucide-react';
 
 export const KanbanBoard: React.FC<KanbanBoardProps> = ({
   columns,
@@ -64,17 +65,25 @@ export const KanbanBoard: React.FC<KanbanBoardProps> = ({
   };
 
   return (
-    <div className="h-full w-full bg-background p-6">
+    <div className="h-full w-full bg-background p-8">
       {/* Header */}
-      <div className="mb-6">
-        <h1 className="text-2xl font-bold text-foreground">Kanban Board</h1>
-        <p className="text-sm text-muted-foreground mt-1">
+      <div className="mb-8">
+        <div className="flex items-center gap-3 mb-2">
+          <div className="p-2 bg-gradient-to-br from-primary-500 to-primary-700 rounded-xl shadow-lg">
+            <Layers className="w-6 h-6 text-white" />
+          </div>
+          <h1 className="text-4xl font-bold bg-gradient-to-r from-primary-600 to-primary-800 bg-clip-text text-transparent">
+            Kanban Board
+          </h1>
+          <Sparkles className="w-5 h-5 text-primary-500 animate-pulse" />
+        </div>
+        <p className="text-base text-muted-foreground ml-14 font-medium">
           Drag and drop tasks to organize your workflow
         </p>
       </div>
 
       {/* Columns Container */}
-      <div className="flex gap-4 overflow-x-auto kanban-scroll pb-4">
+      <div className="flex gap-6 overflow-x-auto kanban-scroll pb-6">
         {columns.map(column => {
           const columnTasks = column.taskIds
             .map(taskId => tasks[taskId])

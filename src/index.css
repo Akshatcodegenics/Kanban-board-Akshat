@@ -8,16 +8,16 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Base colors */
-    --background: 0 0% 98%;
-    --foreground: 220 13% 18%;
+    /* Base colors - Vibrant gradient background */
+    --background: 220 25% 97%;
+    --foreground: 220 15% 15%;
     
-    /* Card */
+    /* Card with elevation */
     --card: 0 0% 100%;
-    --card-foreground: 220 13% 18%;
-    --card-hover: 0 0% 98%;
+    --card-foreground: 220 15% 15%;
+    --card-hover: 214 100% 99%;
     
-    /* Primary - Professional Blue */
+    /* Primary - Vibrant Blue/Purple Gradient */
     --primary-50: 214 100% 97%;
     --primary-100: 214 95% 93%;
     --primary-200: 213 97% 87%;
@@ -32,54 +32,63 @@ All colors MUST be HSL.
     --primary: var(--primary-600);
     --primary-foreground: 0 0% 100%;
     
-    /* Neutral */
-    --neutral-50: 0 0% 98%;
-    --neutral-100: 220 14% 96%;
-    --neutral-200: 220 13% 91%;
-    --neutral-300: 216 12% 84%;
-    --neutral-400: 218 11% 65%;
-    --neutral-500: 220 9% 46%;
-    --neutral-600: 215 14% 34%;
-    --neutral-700: 217 19% 27%;
-    --neutral-800: 215 28% 17%;
-    --neutral-900: 220 13% 18%;
+    /* Neutral with warmth */
+    --neutral-50: 220 20% 98%;
+    --neutral-100: 220 18% 96%;
+    --neutral-200: 220 16% 92%;
+    --neutral-300: 216 14% 86%;
+    --neutral-400: 218 12% 68%;
+    --neutral-500: 220 10% 48%;
+    --neutral-600: 215 16% 36%;
+    --neutral-700: 217 20% 28%;
+    --neutral-800: 215 30% 18%;
+    --neutral-900: 220 18% 12%;
     
-    /* Status Colors */
-    --status-todo: 200 100% 40%;
-    --status-progress: 45 93% 47%;
-    --status-review: 280 67% 52%;
-    --status-done: 142 71% 45%;
+    /* Status Colors - More vibrant */
+    --status-todo: 200 95% 45%;
+    --status-progress: 45 96% 52%;
+    --status-review: 280 75% 58%;
+    --status-done: 142 76% 48%;
     
-    /* Priority Colors */
-    --priority-low: 200 80% 50%;
-    --priority-medium: 45 93% 47%;
-    --priority-high: 25 95% 53%;
-    --priority-urgent: 0 84% 60%;
+    /* Priority Colors - Enhanced */
+    --priority-low: 200 85% 55%;
+    --priority-medium: 45 96% 52%;
+    --priority-high: 25 98% 58%;
+    --priority-urgent: 0 88% 65%;
     
     /* UI Elements */
-    --border: 220 13% 91%;
-    --input: 220 13% 91%;
+    --border: 220 16% 90%;
+    --input: 220 16% 92%;
     --ring: var(--primary-500);
-    --radius: 0.75rem;
+    --radius: 0.875rem;
     
     /* Semantic tokens */
-    --muted: 220 14% 96%;
-    --muted-foreground: 220 9% 46%;
+    --muted: 220 18% 96%;
+    --muted-foreground: 220 10% 48%;
     --accent: 214 100% 97%;
     --accent-foreground: 224 76% 48%;
-    --destructive: 0 84% 60%;
+    --destructive: 0 88% 65%;
     --destructive-foreground: 0 0% 100%;
     
-    /* Shadows */
-    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    /* Enhanced Shadows with color tint */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.06);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.12), 0 2px 4px -2px rgb(0 0 0 / 0.08);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.14), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.16), 0 8px 10px -6px rgb(0 0 0 / 0.12);
+    --shadow-colored: 0 8px 20px -4px hsl(var(--primary-500) / 0.25);
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary-500)) 0%, hsl(var(--primary-700)) 100%);
+    --gradient-status-todo: linear-gradient(135deg, hsl(var(--status-todo)) 0%, hsl(200 95% 35%) 100%);
+    --gradient-status-progress: linear-gradient(135deg, hsl(var(--status-progress)) 0%, hsl(45 96% 42%) 100%);
+    --gradient-status-review: linear-gradient(135deg, hsl(var(--status-review)) 0%, hsl(280 75% 48%) 100%);
+    --gradient-status-done: linear-gradient(135deg, hsl(var(--status-done)) 0%, hsl(142 76% 38%) 100%);
     
     /* Transitions */
     --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-base: 200ms cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-slow: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: 500ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
   }
 }
 
@@ -91,6 +100,7 @@ All colors MUST be HSL.
   body {
     @apply bg-background text-foreground antialiased;
     font-feature-settings: "rlig" 1, "calt" 1;
+    background: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(220 25% 95%) 100%);
   }
   
   /* Smooth scrolling for kanban */

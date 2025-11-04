@@ -4,6 +4,7 @@ import type { KanbanColumn as KanbanColumnType, KanbanTask } from '@/types/kanba
 import { KanbanCard } from './KanbanCard';
 import { Button } from '@/components/primitives/Button';
 import { getStatusColor } from '@/utils/task.utils';
+import { Plus, Circle } from 'lucide-react';
 
 export interface KanbanColumnProps {
   column: KanbanColumnType;
@@ -52,24 +53,24 @@ export const KanbanColumn: React.FC<KanbanColumnProps> = ({
     <div
       ref={columnRef}
       className={cn(
-        'flex flex-col w-80 shrink-0 bg-neutral-50 rounded-xl border border-border transition-colors duration-base',
-        isDropTarget && 'drag-over'
+        'flex flex-col w-80 shrink-0 bg-gradient-to-br from-card to-neutral-50 rounded-2xl border-2 border-border shadow-lg transition-all duration-base',
+        isDropTarget && 'drag-over ring-2 ring-primary-400 ring-offset-2'
       )}
       role="region"
       aria-label={`${column.title} column. ${tasks.length} tasks${column.maxTasks ? `, WIP limit ${column.maxTasks}` : ''}.`}
     >
       {/* Column Header */}
-      <div className="px-4 py-3 border-b border-border bg-card rounded-t-xl">
+      <div className="px-5 py-4 border-b-2 border-border bg-gradient-to-r from-card to-neutral-50/50 rounded-t-2xl backdrop-blur-sm">
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3">
             <div
-              className={cn('w-2 h-2 rounded-full', getStatusColor(column.status))}
+              className={cn('w-3 h-3 rounded-full shadow-sm', getStatusColor(column.status))}
               aria-hidden="true"
             />
-            <h3 className="font-semibold text-sm text-foreground">
+            <h3 className="font-bold text-base text-foreground">
               {column.title}
             </h3>
-            <span className="text-xs text-muted-foreground bg-neutral-100 px-2 py-0.5 rounded-full">
+            <span className="text-xs font-semibold text-primary-600 bg-primary-50 px-3 py-1 rounded-full border border-primary-200 shadow-sm">
               {tasks.length}
             </span>
           </div>
@@ -78,10 +79,10 @@ export const KanbanColumn: React.FC<KanbanColumnProps> = ({
           {column.maxTasks && (
             <div
               className={cn(
-                'text-xs font-medium px-2 py-0.5 rounded',
-                isAtWIPLimit && 'bg-red-100 text-red-700',
-                isNearWIPLimit && !isAtWIPLimit && 'bg-amber-100 text-amber-700',
-                !isNearWIPLimit && 'text-muted-foreground'
+                'text-xs font-bold px-3 py-1 rounded-full shadow-sm border',
+                isAtWIPLimit && 'bg-red-100 text-red-700 border-red-300',
+                isNearWIPLimit && !isAtWIPLimit && 'bg-amber-100 text-amber-700 border-amber-300',
+                !isNearWIPLimit && 'bg-neutral-100 text-muted-foreground border-neutral-300'
               )}
               title="Work In Progress limit"
             >
@@ -93,13 +94,14 @@ export const KanbanColumn: React.FC<KanbanColumnProps> = ({
 
       {/* Tasks Container */}
       <div
-        className="flex-1 p-3 space-y-2 overflow-y-auto kanban-scroll min-h-[200px] max-h-[calc(100vh-250px)]"
+        className="flex-1 p-4 space-y-3 overflow-y-auto kanban-scroll min-h-[200px] max-h-[calc(100vh-250px)]"
         onDragOver={(e) => handleDragOver(e, tasks.length)}
         onDrop={(e) => handleDrop(e, tasks.length)}
       >
         {tasks.length === 0 && !draggedTaskId && (
-          <div className="flex items-center justify-center h-32 text-sm text-muted-foreground border-2 border-dashed border-border rounded-lg">
-            No tasks yet
+          <div className="flex flex-col items-center justify-center h-40 text-sm text-muted-foreground border-2 border-dashed border-border rounded-xl bg-neutral-50/50">
+            <Circle className="w-8 h-8 mb-2 opacity-40" />
+            <span className="font-medium">No tasks yet</span>
           </div>
         )}
 
@@ -134,29 +136,15 @@ export const KanbanColumn: React.FC<KanbanColumnProps> = ({
       </div>
 
       {/* Add Task Button */}
-      <div className="p-3 border-t border-border bg-card rounded-b-xl">
+      <div className="p-4 border-t-2 border-border bg-gradient-to-r from-card to-neutral-50/50 rounded-b-2xl">
         <Button
           variant="ghost"
           size="sm"
           onClick={() => onTaskAdd(column.id)}
-          className="w-full justify-start text-muted-foreground hover:text-foreground"
+          className="w-full justify-center text-primary-600 hover:text-primary-700 hover:bg-primary-50 font-semibold gap-2 border-2 border-dashed border-primary-200 hover:border-primary-400 rounded-xl transition-all"
           disabled={isAtWIPLimit}
         >
-          <svg
-            width="16"
-            height="16"
-            viewBox="0 0 15 15"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            className="mr-1"
-          >
-            <path
-              d="M8 2.75C8 2.47386 7.77614 2.25 7.5 2.25C7.22386 2.25 7 2.47386 7 2.75V7H2.75C2.47386 7 2.25 7.22386 2.25 7.5C2.25 7.77614 2.47386 8 2.75 8H7V12.25C7 12.5261 7.22386 12.75 7.5 12.75C7.77614 12.75 8 12.5261 8 12.25V8H12.25C12.5261 8 12.75 7.77614 12.75 7.5C12.75 7.22386 12.5261 7 12.25 7H8V2.75Z"
-              fill="currentColor"
-              fillRule="evenodd"
-              clipRule="evenodd"
-            />
-          </svg>
+          <Plus className="w-4 h-4" />
           Add task
         </Button>
       </div>
