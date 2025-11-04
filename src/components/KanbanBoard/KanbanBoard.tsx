@@ -4,6 +4,7 @@ import { KanbanColumn } from './KanbanColumn';
 import { TaskModal } from './TaskModal';
 import { useDragAndDrop } from '@/hooks/useDragAndDrop';
 import { Layers, Sparkles } from 'lucide-react';
+import heroImage from '@/assets/kanban-hero.png';
 
 export const KanbanBoard: React.FC<KanbanBoardProps> = ({
   columns,
@@ -65,25 +66,41 @@ export const KanbanBoard: React.FC<KanbanBoardProps> = ({
   };
 
   return (
-    <div className="h-full w-full bg-background p-8">
-      {/* Header */}
-      <div className="mb-8">
-        <div className="flex items-center gap-3 mb-2">
-          <div className="p-2 bg-gradient-to-br from-primary-500 to-primary-700 rounded-xl shadow-lg">
-            <Layers className="w-6 h-6 text-white" />
+    <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary-50/30 p-4 md:p-6 lg:p-8">
+      {/* Hero Section with 3D Graphics */}
+      <div className="max-w-[1600px] mx-auto mb-8">
+        <div className="relative overflow-hidden rounded-2xl shadow-2xl mb-8">
+          <img 
+            src={heroImage} 
+            alt="Kanban Board Hero" 
+            className="w-full h-32 md:h-40 object-cover opacity-90"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-primary-900/50 via-primary-800/30 to-transparent flex items-center">
+            <div className="px-8 py-6">
+              <div className="flex items-center gap-4 mb-2">
+                <div className="relative">
+                  <div className="absolute inset-0 bg-white/30 rounded-xl blur-lg"></div>
+                  <div className="relative bg-white/20 backdrop-blur-sm p-3 rounded-xl border border-white/30">
+                    <Layers className="w-8 h-8 text-white drop-shadow-lg" />
+                  </div>
+                </div>
+                <div>
+                  <h1 className="text-4xl md:text-5xl font-bold text-white drop-shadow-lg">
+                    Kanban Board
+                  </h1>
+                  <p className="text-white/90 text-sm mt-1 flex items-center gap-2 drop-shadow">
+                    <Sparkles className="w-4 h-4" />
+                    Drag and drop to organize your tasks
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
-          <h1 className="text-4xl font-bold bg-gradient-to-r from-primary-600 to-primary-800 bg-clip-text text-transparent">
-            Kanban Board
-          </h1>
-          <Sparkles className="w-5 h-5 text-primary-500 animate-pulse" />
         </div>
-        <p className="text-base text-muted-foreground ml-14 font-medium">
-          Drag and drop tasks to organize your workflow
-        </p>
       </div>
 
       {/* Columns Container */}
-      <div className="flex gap-6 overflow-x-auto kanban-scroll pb-6">
+      <div className="max-w-[1600px] mx-auto flex gap-6 overflow-x-auto kanban-scroll pb-6">
         {columns.map(column => {
           const columnTasks = column.taskIds
             .map(taskId => tasks[taskId])

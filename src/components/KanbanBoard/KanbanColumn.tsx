@@ -5,6 +5,7 @@ import { KanbanCard } from './KanbanCard';
 import { Button } from '@/components/primitives/Button';
 import { getStatusColor } from '@/utils/task.utils';
 import { Plus, Circle } from 'lucide-react';
+import emptyStateImage from '@/assets/empty-state.png';
 
 export interface KanbanColumnProps {
   column: KanbanColumnType;
@@ -99,9 +100,17 @@ export const KanbanColumn: React.FC<KanbanColumnProps> = ({
         onDrop={(e) => handleDrop(e, tasks.length)}
       >
         {tasks.length === 0 && !draggedTaskId && (
-          <div className="flex flex-col items-center justify-center h-40 text-sm text-muted-foreground border-2 border-dashed border-border rounded-xl bg-neutral-50/50">
-            <Circle className="w-8 h-8 mb-2 opacity-40" />
+          <div className="flex flex-col items-center justify-center h-64 text-sm text-muted-foreground border-2 border-dashed border-border rounded-xl bg-neutral-50/50">
+            <div className="relative w-32 h-32 mb-4">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary-100 to-primary-50 rounded-full blur-2xl opacity-50"></div>
+              <img 
+                src={emptyStateImage} 
+                alt="No tasks" 
+                className="relative w-full h-full object-contain animate-float"
+              />
+            </div>
             <span className="font-medium">No tasks yet</span>
+            <span className="text-xs mt-1 opacity-60">Add a task to get started</span>
           </div>
         )}
 
