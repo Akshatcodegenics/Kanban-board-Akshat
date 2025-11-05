@@ -8,7 +8,7 @@ import {
   getPriorityBadgeColor,
 } from '@/utils/task.utils';
 import { Avatar } from '@/components/primitives/Avatar';
-import { Calendar, Tag, AlertCircle } from 'lucide-react';
+import { Calendar } from 'lucide-react';
 
 export interface KanbanCardProps {
   task: KanbanTask;
@@ -78,7 +78,6 @@ export const KanbanCard: React.FC<KanbanCardProps> = ({
               getPriorityBadgeColor(task.priority)
             )}
           >
-            <AlertCircle className="w-3 h-3" />
             {task.priority}
           </span>
         )}
@@ -99,7 +98,6 @@ export const KanbanCard: React.FC<KanbanCardProps> = ({
               key={tag}
               className="text-xs bg-primary-50 text-primary-700 px-2.5 py-1 rounded-full border border-primary-200 flex items-center gap-1 font-medium"
             >
-              <Tag className="w-3 h-3" />
               {tag}
             </span>
           ))}
